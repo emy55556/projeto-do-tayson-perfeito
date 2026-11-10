@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORTAL STREET | Moda Streetwear</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --primary: #ff2e63;
+    --dark: #0a0a0a;
+    --light: #f5f5f5;
+    --gray: #1a1a1a;
+    --success: #2eff63;
+    --gold: #ffd700;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Arial Black', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+  }
+  
+  .free-shipping-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), #ff5580, var(--primary));
+    background-size: 200% 100%;
+    color: white;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    z-index: 1100;
+    animation: shimmer 3s infinite linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  
+  .free-shipping-bar .truck-icon {
+    font-size: 1.1rem;
+    animation: bounce 1.5s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  
+  header {
+    position: fixed;
+    top: 34px;
+    width: 100%;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 2px solid var(--primary);
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--light);
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .logo span { color: var(--primary); }
+  
+  nav ul { display: flex; list-style: none; gap: 2rem; }
+  
+  nav a {
+    color: var(--light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    position: relative;
+  }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+  }
+  
+  nav a:hover { color: var(--primary); }
+  nav a:hover::after { width: 100%; }
+  nav a.active { color: var(--primary); }
+  nav a.active::after { width: 100%; }
+  
+  .cart-btn {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+    letter-spacing: 1px;
+    transition: transform 0.2s;
+  }
+  
+  .cart-btn:hover { transform: scale(1.05); }
+  
+  .splash {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a15 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .splash::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,46,99,0.15) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .splash-content { position: relative; z-index: 1; max-width: 900px; }
+  
+  .splash-logo {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+    text-shadow: 0 0 40px rgba(255,46,99,0.5);
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .splash-logo span {
+    color: var(--primary);
+    display: block;
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 40px rgba(255,46,99,0.5); }
+    50% { text-shadow: 0 0 80px rgba(255,46,99,1), 0 0 100px rgba(255,46,99,0.5); }
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .splash-tagline {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    color: #999;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out 0.3s both;
+  }
+  
+  .splash-features {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+  
+  .splash-feature {
+    background: rgba(255,46,99,0.1);
+    border: 1px solid rgba(255,46,99,0.3);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    min-width: 160px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .splash-feature-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .splash-feature-title { font-size: 0.85rem; letter-spacing: 1.5px; color: var(--light); margin-bottom: 0.3rem; }
+  .splash-feature-desc { font-family: Arial, sans-serif; font-size: 0.75rem; color: #888; }
+  
+  .splash-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.9s both;
+  }
+  
+  .cta-btn {
+    background: var(--primary);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  }
+  
+  .cta-btn:hover {
+    background: white;
+    color: var(--dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,46,99,0.4);
+  }
+  
+  .cta-btn-secondary {
+    background: transparent;
+    color: var(--light);
+    padding: 1.2rem 3rem;
+    border: 2px solid var(--light);
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  }
+  
+  .cta-btn-secondary:hover {
+    background: var(--light);
+    color: var(--dark);
+    transform: translateY(-3px);
+  }
+  
+  .splash-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #666;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    animation: float 2s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #888;
+    margin-bottom: 3rem;
+  }
+  
+  .products {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+  }
+  
+  .tab-btn {
+    background: var(--gray);
+    border: 2px solid #333;
+    color: var(--light);
+    padding: 1rem 1.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  .tab-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
+  
+  .tab-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 8px 20px rgba(255,46,99,0.4);
+  }
+  
+  .tab-btn.tab-promo { border-color: var(--gold); color: var(--gold); }
+  
+  .tab-btn.tab-promo.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 8px 20px rgba(255,215,0,0.4);
+  }
+  
+  .tab-btn .tab-icon { font-size: 1.3rem; }
+  
+  .tab-btn .tab-count {
+    background: rgba(0,0,0,0.3);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+  }
+  
+  .tab-btn.active .tab-count { background: rgba(255,255,255,0.25); }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .card {
+    background: var(--gray);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease-out;
+    position: relative;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255,46,99,0.3);
+    border-color: var(--primary);
+  }
+  
+  .card.promo-card { border-color: var(--gold); }
+  .card.promo-card:hover { box-shadow: 0 20px 40px rgba(255,215,0,0.4); border-color: var(--gold); }
+  
+  .card-img {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  
+  .card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.4));
+    pointer-events: none;
+  }
+  
+  .card-img svg {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.6));
+    transition: transform 0.4s;
+  }
+  
+  .card:hover .card-img svg {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  
+  .card-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    z-index: 2;
+    font-family: 'Arial Black', sans-serif;
+  }
+  
+  .card-tag.promo-tag {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 900;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  
+  .card-info {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .price-section { margin-bottom: 1rem; }
+  
+  .old-price {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    text-decoration: line-through;
+    margin-right: 0.5rem;
+  }
+  
+  .price { color: var(--primary); font-size: 1.4rem; font-weight: 900; }
+  .promo-card .price { color: var(--gold); }
+  
+  .discount-badge {
+    display: inline-block;
+    background: #ff3333;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .free-ship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(46,255,99,0.15);
+    border: 1px solid rgba(46,255,99,0.4);
+    color: var(--success);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+  }
+  
+  .model-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .model-btn {
+    padding: 0.6rem 0.3rem;
+    background: var(--dark);
+    border: 2px solid #333;
+    color: var(--light);
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+  }
+  
+  .model-btn:hover { border-color: var(--primary); transform: translateY(-2px); }
+  
+  .model-btn.selected {
+    border-color: var(--primary);
+    background: rgba(255,46,99,0.15);
+    box-shadow: 0 0 12px rgba(255,46,99,0.5);
+  }
+  
+  .model-btn.selected::after {
+    content: '✓';
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--primary);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid var(--dark);
+  }
+  
+  .model-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    display: block;
+    transition: transform 0.2s;
+  }
+  
+  .model-btn:hover .model-color { transform: scale(1.15); }
+  .model-btn.selected .model-color { border-color: var(--primary); }
+  
+  .model-name { font-size: 0.55rem; opacity: 0.9; font-weight: 700; }
+  
+  .stock-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .sizes {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .size-btn {
+    flex: 1;
+    min-width: 55px;
+    padding: 0.7rem 0.4rem;
+    background: var(--dark);
+    border: 2px solid #333;
+    color: var(--light);
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+  
+  .size-btn .size-name { font-size: 0.95rem; font-weight: 900; }
+  .size-btn .size-stock { font-family: Arial, sans-serif; font-size: 0.65rem; font-weight: normal; opacity: 0.8; }
+  
+  .size-btn:hover:not(:disabled) { border-color: var(--primary); background: rgba(255,46,99,0.1); }
+  .size-btn.selected { background: var(--primary); border-color: var(--primary); color: white; }
+  
+  .size-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: #222;
+    background: #0f0f0f;
+  }
+  
+  .size-btn:disabled .size-stock { color: #ff4444; text-decoration: line-through; }
+  
+  .add-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+  
+  .add-btn:hover:not(:disabled) { background: var(--primary); color: white; }
+  
+  .promo-card .add-btn { border-color: var(--gold); color: var(--gold); }
+  .promo-card .add-btn:hover:not(:disabled) { background: var(--gold); color: var(--dark); }
+  
+  .add-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #444;
+    color: #666;
+  }
+  
+  .quiz-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #1a0a15, #0a0a0a);
+    scroll-margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quiz-section::before {
+    content: 'QUIZ';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40vw;
+    color: rgba(255,46,99,0.03);
+    font-weight: 900;
+    pointer-events: none;
+  }
+  
+  .quiz-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--gray);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 2px solid var(--primary);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .quiz-progress { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+  
+  .quiz-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.4s;
+  }
+  
+  .quiz-progress-bar.completed .quiz-progress-fill { width: 100%; }
+  
+  .quiz-question-num { color: var(--primary); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  
+  .quiz-question {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; }
+  
+  .quiz-option {
+    background: var(--dark);
+    border: 2px solid #333;
+    color: var(--light);
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .quiz-option:hover {
+    border-color: var(--primary);
+    background: rgba(255,46,99,0.1);
+    transform: translateX(5px);
+  }
+  
+  .quiz-option .option-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gray);
+    color: var(--primary);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  
+  .quiz-result { text-align: center; padding: 1rem 0; }
+  
+  .quiz-result-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.6s ease-out;
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .quiz-result h3 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .quiz-result p {
+    font-family: Arial, sans-serif;
+    color: #aaa;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .quiz-result-recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .recommendation-card {
+    background: var(--dark);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .recommendation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(255,46,99,0.3);
+  }
+  
+  .recommendation-card svg {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recommendation-card h4 { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
+  .recommendation-card .rec-price { color: var(--primary); font-size: 0.95rem; font-weight: 900; }
+  
+  .quiz-restart-btn {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 0.9rem 2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  
+  .quiz-restart-btn:hover { background: var(--primary); color: white; }
+  
+  .cart-sidebar {
+    position: fixed;
+    right: -450px;
+    top: 0;
+    width: 400px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--gray);
+    z-index: 2000;
+    padding: 2rem;
+    transition: right 0.4s;
+    overflow-y: auto;
+    border-left: 2px solid var(--primary);
+  }
+  
+  .cart-sidebar.open { right: 0; }
+  
+  .cart-sidebar h2 { margin-bottom: 2rem; color: var(--primary); }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  .cart-item-info h4 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .cart-item-info span { color: var(--primary); font-weight: bold; }
+  
+  .remove-btn {
+    background: transparent;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  .cart-total {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cart-free-ship {
+    margin-top: 0.8rem;
+    background: rgba(46,255,99,0.1);
+    border: 1px solid rgba(46,255,99,0.3);
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--success);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+  
+  .checkout-btn:hover { transform: scale(1.02); }
+  
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1500;
+    display: none;
+  }
+  
+  .overlay.show { display: block; }
+  
+  .empty-cart { text-align: center; color: #666; padding: 3rem 0; font-family: Arial, sans-serif; }
+  
+  .checkout-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(5px);
+    z-index: 4000;
+    display: none;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+  }
+  
+  .checkout-modal.open { display: block; }
+  
+  .checkout-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--gray);
+    border-radius: 16px;
+    border: 2px solid var(--primary);
+    padding: 2.5rem;
+    position: relative;
+    animation: modalIn 0.3s ease-out;
+  }
+  
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--light);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  
+  .close-modal:hover { color: var(--primary); }
+  
+  .checkout-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    letter-spacing: -1px;
+  }
+  
+  .checkout-subtitle {
+    font-family: Arial, sans-serif;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  
+  .checkout-section {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #333;
+  }
+  
+  .checkout-section-title {
+    font-size: 0.95rem;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .checkout-field { margin-bottom: 1rem; }
+  .checkout-field:last-child { margin-bottom: 0; }
+  
+  .checkout-field label {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .checkout-field input,
+  .checkout-field select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: var(--gray);
+    border: 1px solid #444;
+    color: white;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .checkout-field input:focus,
+  .checkout-field select:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  
+  .checkout-field input.error {
+    border-color: #ff4444;
+    background: rgba(255,68,68,0.05);
+  }
+  
+  .checkout-field input::placeholder { color: #555; }
+  
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  
+  .payment-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .payment-option {
+    background: var(--gray);
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  
+  .payment-option:hover { border-color: var(--primary); }
+  
+  .payment-option.selected {
+    background: rgba(255,46,99,0.15);
+    border-color: var(--primary);
+  }
+  
+  .payment-option .payment-icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+  .payment-option .payment-name { font-family: Arial, sans-serif; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; }
+  
+  .checkout-summary {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #333;
+  }
+  
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    padding: 0.4rem 0;
+    color: #ccc;
+  }
+  
+  .summary-shipping {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    padding: 0.6rem 0;
+    color: var(--success);
+    font-weight: bold;
+    border-top: 1px dashed #444;
+    margin-top: 0.5rem;
+  }
+  
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary);
+    font-size: 1.3rem;
+    color: var(--primary);
+  }
+  
+  .confirm-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  
+  .confirm-btn:hover {
+    background: #ff5580;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255,46,99,0.4);
+  }
+  
+  .success-screen { text-align: center; padding: 2rem 1rem; }
+  
+  .success-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.6s ease-out;
+  }
+  
+  .success-screen h2 { color: var(--success); font-size: 2rem; margin-bottom: 1rem; }
+  
+  .success-screen p {
+    font-family: Arial, sans-serif;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .order-number {
+    display: inline-block;
+    background: var(--dark);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--primary);
+    font-family: Arial, sans-serif;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .order-number strong { color: var(--primary); }
+  
+  footer {
+    background: var(--gray);
+    padding: 3rem 2rem;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #666;
+    border-top: 2px solid var(--primary);
+  }
+  
+  footer .logo { margin-bottom: 1rem; display: inline-block; }
+  
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(200%);
+    background: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    z-index: 5000;
+    transition: transform 0.3s;
+    font-family: Arial, sans-serif;
+  }
+  
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .logo { font-size: 1.1rem; }
+    .tab-btn { padding: 0.8rem 1.2rem; font-size: 0.75rem; }
+    .section-title { font-size: 2rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .payment-options { grid-template-columns: 1fr; }
+    .checkout-container { padding: 1.5rem; }
+    .quiz-box { padding: 1.5rem; }
+    .quiz-question { font-size: 1.2rem; }
+    .splash-logo { font-size: 3rem; }
+    .splash-features { flex-direction: column; align-items: center; }
+    .free-shipping-bar { font-size: 0.65rem; letter-spacing: 1px; }
+    header { top: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="free-shipping-bar">
+  <span class="truck-icon">🚚</span>
+  <span>FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 199,90 PARA TODO O BRASIL</span>
+  <span class="truck-icon">🚚</span>
+</div>
+
+<header>
+  <div class="logo" onclick="irPara('home')">FORTAL<span>STREET</span></div>
+  <nav>
+    <ul>
+      <li><a onclick="irPara('home')" data-nav="home">HOME</a></li>
+      <li><a onclick="irPara('produtos')" data-nav="produtos">PRODUTOS</a></li>
+      <li><a onclick="irPara('quiz')" data-nav="quiz">QUIZ</a></li>
+    </ul>
+  </nav>
+  <button class="cart-btn" onclick="toggleCart()">🛒 CARRINHO (<span id="cart-count">0</span>)</button>
+</header>
+
+<section class="splash" id="home">
+  <div class="splash-content">
+    <h1 class="splash-logo">FORTAL<span>STREET</span></h1>
+    <p class="splash-tagline">Moda Streetwear Autêntica</p>
+    
+    <div class="splash-features">
+      <div class="splash-feature">
+        <div class="splash-feature-icon">🚚</div>
+        <div class="splash-feature-title">FRETE GRÁTIS</div>
+        <div class="splash-feature-desc">Acima de R$ 199,90</div>
+      </div>
+      <div class="splash-feature">
+        <div class="splash-feature-icon">🔥</div>
+        <div class="splash-feature-title">PROMOÇÕES</div>
+        <div class="splash-feature-desc">Até 40% OFF</div>
+      </div>
+      <div class="splash-feature">
+        <div class="splash-feature-icon">🎨</div>
+        <div class="splash-feature-title">8 CORES</div>
+        <div class="splash-feature-desc">Escolha seu estilo</div>
+      </div>
+      <div class="splash-feature">
+        <div class="splash-feature-icon">🔒</div>
+        <div class="splash-feature-title">COMPRA SEGURA</div>
+        <div class="splash-feature-desc">Pagamento protegido</div>
+      </div>
+    </div>
+    
+    <div class="splash-actions">
+      <button class="cta-btn" onclick="irPara('produtos')">VER PRODUTOS</button>
+      <button class="cta-btn-secondary" onclick="irPara('quiz')">FAZER O QUIZ</button>
+    </div>
+  </div>
+  <div class="splash-scroll-hint">▼ ROLE PARA EXPLORAR ▼</div>
+</section>
+
+<section class="products" id="produtos">
+  <h2 class="section-title">NOSSA <span style="color:var(--primary)">COLEÇÃO</span></h2>
+  <p class="section-subtitle">Escolha a cor e o tamanho desejados</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<section class="quiz-section" id="quiz">
+  <h2 class="section-title">DESCUBRA SEU <span style="color:var(--primary)">ESTILO</span></h2>
+  <p class="section-subtitle">Responda 5 perguntas e receba recomendações exclusivas</p>
+  <div class="quiz-box" id="quiz-box"></div>
+</section>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<div class="cart-sidebar" id="cart">
+  <h2>SEU CARRINHO</h2>
+  <div id="cart-items"></div>
+  <div class="cart-total">
+    <span>TOTAL:</span>
+    <span id="cart-total">R$ 0,00</span>
+  </div>
+  <div class="cart-free-ship" id="cart-free-ship" style="display:none;">
+    🚚 <span>Você ganhou FRETE GRÁTIS!</span>
+  </div>
+  <button class="checkout-btn" onclick="openCheckout()">FINALIZAR COMPRA</button>
+</div>
+
+<div class="checkout-modal" id="checkout-modal">
+  <div class="checkout-container">
+    <button class="close-modal" onclick="closeCheckout()">×</button>
+    
+    <div id="checkout-form-view">
+      <h2 class="checkout-title">FINALIZAR PEDIDO</h2>
+      <p class="checkout-subtitle">Preencha seus dados para concluir a compra</p>
+      
+      <div class="checkout-section">
+        <div class="checkout-section-title">👤 DADOS PESSOAIS</div>
+        <div class="checkout-field">
+          <label>Nome Completo *</label>
+          <input type="text" id="inp-nome" placeholder="João da Silva Santos">
+        </div>
+        <div class="field-row">
+          <div class="checkout-field">
+            <label>CPF *</label>
+            <input type="text" id="inp-cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
+          </div>
+          <div class="checkout-field">
+            <label>Telefone *</label>
+            <input type="text" id="inp-tel" placeholder="(85) 99999-9999" maxlength="15" oninput="maskTelefone(this)">
+          </div>
+        </div>
+      </div>
+      
+      <div class="checkout-section">
+        <div class="checkout-section-title">📍 ENDEREÇO DE ENTREGA</div>
+        <div class="checkout-field">
+          <label>CEP *</label>
+          <input type="text" id="inp-cep" placeholder="60000-000" maxlength="9" oninput="maskCEP(this)">
+        </div>
+        <div class="checkout-field">
+          <label>Rua / Logradouro *</label>
+          <input type="text" id="inp-rua" placeholder="Rua das Flores">
+        </div>
+        <div class="field-row">
+          <div class="checkout-field">
+            <label>Número *</label>
+            <input type="text" id="inp-numero" placeholder="123">
+          </div>
+          <div class="checkout-field">
+            <label>Complemento</label>
+            <input type="text" id="inp-complemento" placeholder="Apto 45 (opcional)">
+          </div>
+        </div>
+        <div class="checkout-field">
+          <label>Bairro *</label>
+          <input type="text" id="inp-bairro" placeholder="Centro">
+        </div>
+        <div class="field-row">
+          <div class="checkout-field">
+            <label>Cidade *</label>
+            <input type="text" id="inp-cidade" placeholder="Fortaleza">
+          </div>
+          <div class="checkout-field">
+            <label>Estado *</label>
+            <select id="inp-estado">
+              <option value="">Selecione</option>
+              <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+              <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+              <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+              <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+              <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+              <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+              <option>SP</option><option>SE</option><option>TO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="checkout-section">
+        <div class="checkout-section-title">💳 FORMA DE PAGAMENTO</div>
+        <div class="payment-options">
+          <div class="payment-option selected" data-payment="cartao" onclick="selectPayment('cartao')">
+            <span class="payment-icon">💳</span>
+            <span class="payment-name">CARTÃO</span>
+          </div>
+          <div class="payment-option" data-payment="pix" onclick="selectPayment('pix')">
+            <span class="payment-icon">⚡</span>
+            <span class="payment-name">PIX</span>
+          </div>
+          <div class="payment-option" data-payment="boleto" onclick="selectPayment('boleto')">
+            <span class="payment-icon">📄</span>
+            <span class="payment-name">BOLETO</span>
+          </div>
+        </div>
+        
+        <div id="card-fields">
+          <div class="checkout-field">
+            <label>Número do Cartão *</label>
+            <input type="text" id="inp-cartao" placeholder="0000 0000 0000 0000" maxlength="19" oninput="maskCartao(this)">
+          </div>
+          <div class="checkout-field">
+            <label>Nome impresso no cartão *</label>
+            <input type="text" id="inp-nome-cartao" placeholder="JOÃO DA SILVA">
+          </div>
+          <div class="field-row">
+            <div class="checkout-field">
+              <label>Validade *</label>
+              <input type="text" id="inp-validade" placeholder="MM/AA" maxlength="5" oninput="maskValidade(this)">
+            </div>
+            <div class="checkout-field">
+              <label>CVV *</label>
+              <input type="text" id="inp-cvv" placeholder="123" maxlength="4" oninput="maskCVV(this)">
+            </div>
+          </div>
+          <div class="checkout-field">
+            <label>Parcelas</label>
+            <select id="inp-parcelas">
+              <option>1x sem juros</option>
+              <option>2x sem juros</option>
+              <option>3x sem juros</option>
+              <option>4x sem juros</option>
+              <option>5x sem juros</option>
+              <option>6x sem juros</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="pix-notice" style="display:none;">
+          <div style="background:rgba(46,255,99,0.1); border:1px solid var(--success); border-radius:8px; padding:1rem; font-family:Arial,sans-serif; font-size:0.85rem; color:#ccc; line-height:1.6;">
+            ⚡ <strong style="color:var(--success)">PIX:</strong> Após confirmar o pedido, você receberá um QR Code para pagamento instantâneo.
+          </div>
+        </div>
+        <div id="boleto-notice" style="display:none;">
+          <div style="background:rgba(255,149,0,0.1); border:1px solid #ff9500; border-radius:8px; padding:1rem; font-family:Arial,sans-serif; font-size:0.85rem; color:#ccc; line-height:1.6;">
+            📄 <strong style="color:#ff9500">BOLETO:</strong> Após confirmar o pedido, você receberá o boleto por e-mail. Prazo: até 3 dias úteis.
+          </div>
+        </div>
+      </div>
+      
+      <div class="checkout-summary">
+        <div id="checkout-summary-items"></div>
+        <div class="summary-shipping">
+          <span>🚚 FRETE:</span>
+          <span>GRÁTIS</span>
+        </div>
+        <div class="summary-total">
+          <span>TOTAL:</span>
+          <span id="checkout-summary-total">R$ 0,00</span>
+        </div>
+      </div>
+      
+      <button class="confirm-btn" onclick="confirmarPedido()">
+        CONFIRMAR PEDIDO 🔒
+      </button>
+    </div>
+    
+    <div id="checkout-success-view" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">🎉</div>
+        <h2>PEDIDO CONFIRMADO!</h2>
+        <p>Obrigado pela sua compra, <strong id="success-name" style="color:var(--primary)">cliente</strong>!<br>
+        Enviamos os detalhes para o seu e-mail.</p>
+        <div class="order-number">
+          Nº DO PEDIDO: <strong id="success-order">#000000</strong>
+        </div>
+        <button class="confirm-btn" onclick="closeCheckout()">VOLTAR À LOJA</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Adicionado ao carrinho!</div>
+
+<footer>
+  <div class="logo" onclick="irPara('home')">FORTAL<span>STREET</span></div>
+  <p>© 2025 Fortal Street - Vista sua atitude</p>
+</footer>
+
+<script>
+  const FRETE_GRATIS_MINIMO = 199.90;
+
+  function irPara(secao) {
+    const cart = document.getElementById('cart');
+    const overlay = document.getElementById('overlay');
+    if (cart.classList.contains('open')) {
+      cart.classList.remove('open');
+      overlay.classList.remove('show');
+    }
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    const linkAtivo = document.querySelector(`nav a[data-nav="${secao}"]`);
+    if (linkAtivo) linkAtivo.classList.add('active');
+    if (secao === 'produtos') switchCategory('blusas');
+    const el = document.getElementById(secao);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  const MODELOS = [
+    { id: 'preto', nome: 'PRETO', cor: '#0a0a0a', bg: 'linear-gradient(135deg,#2a2a2a,#0a0a0a)',
+      fill: '#1a1a1a', stroke: '#555', accent: '#3a3a3a', shadow: '#000000' },
+    { id: 'branco', nome: 'BRANCO', cor: '#f5f5f5', bg: 'linear-gradient(135deg,#ffffff,#d0d0d0)',
+      fill: '#f5f5f5', stroke: '#999', accent: '#e0e0e0', shadow: '#888888' },
+    { id: 'cinza', nome: 'CINZA', cor: '#8a8a8a', bg: 'linear-gradient(135deg,#a0a0a0,#555555)',
+      fill: '#8a8a8a', stroke: '#444', accent: '#a0a0a0', shadow: '#333333' },
+    { id: 'vermelho', nome: 'VERMELHO', cor: '#d41e2d', bg: 'linear-gradient(135deg,#ff3b3b,#7a0010)',
+      fill: '#c8202f', stroke: '#5a000a', accent: '#e05060', shadow: '#4a0008' },
+    { id: 'azul', nome: 'AZUL', cor: '#2e63ff', bg: 'linear-gradient(135deg,#5580ff,#001a7a)',
+      fill: '#2e63d4', stroke: '#001050', accent: '#5580e0', shadow: '#001040' },
+    { id: 'verde', nome: 'VERDE', cor: '#2e9e4a', bg: 'linear-gradient(135deg,#4ec070,#0a4018)',
+      fill: '#2e9040', stroke: '#0a3018', accent: '#50c070', shadow: '#082a12' },
+    { id: 'rosa', nome: 'ROSA', cor: '#ff2e90', bg: 'linear-gradient(135deg,#ff55aa,#7a0040)',
+      fill: '#e63088', stroke: '#600030', accent: '#ff60a5', shadow: '#500028' },
+    { id: 'amarelo', nome: 'AMARELO', cor: '#ffd700', bg: 'linear-gradient(135deg,#ffe84d,#7a6000)',
+      fill: '#e6c200', stroke: '#604800', accent: '#ffe84d', shadow: '#4a3800' },
+  ];
+
+  // ============================================
+  // IMAGENS DIGITAIS DETALHADAS PARA CADA PRODUTO
+  // ============================================
+  const DESENHOS = {
+    // BLUSA OVERSIZED - corte largo com caimento
+    oversized: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ov-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}" stop-opacity="1"/>
+            <stop offset="100%" stop-color="${sh}" stop-opacity="1"/>
+          </linearGradient>
+          <filter id="ov-shadow">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="${sh}" flood-opacity="0.5"/>
+          </filter>
+        </defs>
+        <!-- Corpo da camiseta oversized -->
+        <path d="M58 32 L30 62 L12 100 L38 112 L46 98 L46 178 L154 178 L154 98 L162 112 L188 100 L170 62 L142 32 L118 46 Q100 56 82 46 Z"
+              fill="url(#ov-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round" filter="url(#ov-shadow)"/>
+        <!-- Gola -->
+        <path d="M82 46 Q100 56 118 46" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <path d="M82 46 Q100 58 118 46 Q100 48 82 46" fill="${a}" opacity="0.5"/>
+        <!-- Costuras laterais -->
+        <path d="M46 98 L46 178" stroke="${s}" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+        <path d="M154 98 L154 178" stroke="${s}" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+        <!-- Estampa FS -->
+        <circle cx="100" cy="120" r="24" fill="${a}" opacity="0.4"/>
+        <text x="100" y="128" font-family="Arial Black" font-size="22" fill="${s}" text-anchor="middle" font-weight="900">FS</text>
+        <text x="100" y="145" font-family="Arial" font-size="7" fill="${s}" text-anchor="middle" letter-spacing="2" opacity="0.7">OVERSIZED</text>
+        <!-- Barra -->
+        <path d="M46 178 L154 178" stroke="${s}" stroke-width="2"/>
+      </svg>`,
+
+    // SOCIAL CLÁSSICA - camisa com botões
+    social: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="soc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <!-- Corpo -->
+        <path d="M62 32 L38 58 L26 92 L46 102 L50 92 L50 172 L150 172 L150 92 L154 102 L174 92 L162 58 L138 32 Z"
+              fill="url(#soc-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Colarinho -->
+        <path d="M62 32 L78 52 L100 62 L122 52 L138 32" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <path d="M78 52 L88 85 L100 62 L112 85 L122 52" fill="${a}" stroke="${s}" stroke-width="1.8"/>
+        <!-- Botões -->
+        <line x1="100" y1="85" x2="100" y2="172" stroke="${s}" stroke-width="1.5"/>
+        <circle cx="100" cy="102" r="2.5" fill="${s}"/>
+        <circle cx="100" cy="125" r="2.5" fill="${s}"/>
+        <circle cx="100" cy="148" r="2.5" fill="${s}"/>
+        <!-- Bolso -->
+        <path d="M68 105 L85 105 L85 125 L68 125 Z" fill="none" stroke="${s}" stroke-width="1" opacity="0.5"/>
+        <!-- Barra -->
+        <path d="M50 172 L150 172" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // GOLA POLO - com gola e botões
+    polo: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="polo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M62 32 L38 58 L26 92 L46 102 L50 92 L50 172 L150 172 L150 92 L154 102 L174 92 L162 58 L138 32 Z"
+              fill="url(#polo-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Gola polo dobrada -->
+        <path d="M62 32 L85 58 L100 72 L115 58 L138 32" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <path d="M85 58 L85 78 Q100 84 115 78 L115 58" fill="${a}" stroke="${s}" stroke-width="1.8"/>
+        <!-- Botões -->
+        <line x1="100" y1="72" x2="100" y2="88" stroke="${s}" stroke-width="1.5"/>
+        <circle cx="100" cy="78" r="2.5" fill="${s}"/>
+        <circle cx="100" cy="86" r="2.5" fill="${s}"/>
+        <!-- Detalhe lateral -->
+        <path d="M50 92 L50 172" stroke="${s}" stroke-width="1.2" opacity="0.3"/>
+        <path d="M150 92 L150 172" stroke="${s}" stroke-width="1.2" opacity="0.3"/>
+        <path d="M50 172 L150 172" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // STREET - camiseta com estampa urbana
+    street: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="st-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M65 30 L40 55 L25 90 L45 100 L50 90 L50 175 L150 175 L150 90 L155 100 L175 90 L160 55 L135 30 L115 42 Q100 52 85 42 Z"
+              fill="url(#st-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M85 42 Q100 52 115 42" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <!-- Estampa principal STREET -->
+        <rect x="65" y="90" width="70" height="50" rx="4" fill="${a}" opacity="0.5" stroke="${s}" stroke-width="1"/>
+        <text x="100" y="115" font-family="Arial Black" font-size="15" fill="${s}" text-anchor="middle" font-weight="900">STREET</text>
+        <text x="100" y="127" font-family="Arial" font-size="6" fill="${s}" text-anchor="middle" letter-spacing="3">FORTAL VIBE</text>
+        <!-- Grafismo -->
+        <path d="M72 133 L80 133 M88 133 L96 133 M104 133 L112 133" stroke="${s}" stroke-width="1.5" opacity="0.7"/>
+        <path d="M50 175 L150 175" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // DRI FIT - camiseta esportiva
+    drifit: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="df-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M65 30 L40 55 L25 90 L45 100 L50 90 L50 175 L150 175 L150 90 L155 100 L175 90 L160 55 L135 30 L115 42 Q100 52 85 42 Z"
+              fill="url(#df-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M85 42 Q100 52 115 42" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <!-- Costuras laterais esportivas -->
+        <path d="M50 90 L50 175" stroke="${a}" stroke-width="4" opacity="0.6"/>
+        <path d="M150 90 L150 175" stroke="${a}" stroke-width="4" opacity="0.6"/>
+        <!-- Faixas refletivas -->
+        <path d="M60 100 L140 100 M60 115 L140 115 M60 130 L140 130" stroke="${a}" stroke-width="1" opacity="0.4" stroke-dasharray="4,3"/>
+        <text x="100" y="155" font-family="Arial Black" font-size="13" fill="${s}" text-anchor="middle" font-weight="900" opacity="0.85">DRI-FIT</text>
+        <path d="M50 175 L150 175" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CANELADA - textura canelada
+    canelada: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="can-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+          <pattern id="canelado" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+            <line x1="2" y1="0" x2="2" y2="4" stroke="${s}" stroke-width="1" opacity="0.4"/>
+          </pattern>
+        </defs>
+        <path d="M65 30 L40 55 L25 90 L45 100 L50 90 L50 175 L150 175 L150 90 L155 100 L175 90 L160 55 L135 30 L115 42 Q100 52 85 42 Z"
+              fill="url(#can-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M65 30 L40 55 L25 90 L45 100 L50 90 L50 175 L150 175 L150 90 L155 100 L175 90 L160 55 L135 30 L115 42 Q100 52 85 42 Z"
+              fill="url(#canelado)"/>
+        <path d="M85 42 Q100 52 115 42" fill="none" stroke="${s}" stroke-width="2.5"/>
+        <path d="M50 175 L150 175" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // KIT - duas peças
+    kit: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="kit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <!-- Camiseta do kit -->
+        <path d="M40 35 L25 55 L18 80 L32 86 L35 78 L35 145 L88 145 L88 78 L91 86 L105 80 L98 55 L83 35 L70 42 Q55 48 40 35 Z"
+              fill="url(#kit-grad)" stroke="${s}" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M40 35 L25 55 L18 80" fill="none" stroke="${s}" stroke-width="2.2"/>
+        <path d="M83 35 L98 55 L105 80" fill="none" stroke="${s}" stroke-width="2.2"/>
+        <path d="M35 145 L88 145" stroke="${s}" stroke-width="2.2"/>
+        <!-- Short do kit -->
+        <path d="M100 70 L175 70 L178 100 L175 145 L148 145 L140 110 L132 145 L105 145 L102 100 Z"
+              fill="url(#kit-grad)" stroke="${s}" stroke-width="2.2" stroke-linejoin="round"/>
+        <line x1="102" y1="85" x2="178" y2="85" stroke="${s}" stroke-width="2"/>
+        <line x1="140" y1="85" x2="140" y2="110" stroke="${s}" stroke-width="1.5"/>
+        <circle cx="140" cy="78" r="2" fill="${s}"/>
+        <!-- Estampa -->
+        <text x="60" y="105" font-family="Arial Black" font-size="10" fill="${s}" text-anchor="middle" font-weight="900" opacity="0.8">FS</text>
+        <text x="140" y="165" font-family="Arial Black" font-size="9" fill="${s}" text-anchor="middle" letter-spacing="1.5">KIT DUO</text>
+      </svg>`,
+
+    // SHORT CARGO
+    shorts: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 50 L150 50 L155 90 L150 145 L108 145 L100 100 L92 145 L50 145 L45 90 Z"
+              fill="url(#sh-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="45" y1="70" x2="155" y2="70" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="70" x2="100" y2="100" stroke="${s}" stroke-width="2"/>
+        <!-- Bolsos cargo -->
+        <rect x="58" y="78" width="24" height="20" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <line x1="58" y1="88" x2="82" y2="88" stroke="${s}" stroke-width="1"/>
+        <rect x="118" y="78" width="24" height="20" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <line x1="118" y1="88" x2="142" y2="88" stroke="${s}" stroke-width="1"/>
+        <!-- Botão -->
+        <circle cx="100" cy="60" r="3" fill="${s}"/>
+        <!-- Barra -->
+        <path d="M50 145 L92 145 M108 145 L150 145" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // SHORT JEANS
+    jeans: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="jn-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M52 40 L148 40 L152 80 L145 160 L108 160 L100 95 L92 160 L55 160 L48 80 Z"
+              fill="url(#jn-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="48" y1="60" x2="152" y2="60" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="60" x2="100" y2="95" stroke="${s}" stroke-width="2"/>
+        <!-- Bolsos -->
+        <path d="M60 75 Q74 68 88 75" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <path d="M112 75 Q126 68 140 75" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <!-- Botão -->
+        <circle cx="100" cy="52" r="3" fill="${s}"/>
+        <!-- Costuras destroyed -->
+        <line x1="62" y1="140" x2="90" y2="140" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+        <line x1="110" y1="140" x2="138" y2="140" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+        <path d="M55 160 L92 160 M108 160 L145 160" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // TÊNIS ADIDAS/NIKE/VANS
+    tenis: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tn-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <!-- Corpo do tênis -->
+        <path d="M25 125 Q25 95 55 90 L95 82 Q118 78 132 90 L168 112 Q180 120 177 138 L177 145 L25 145 Z"
+              fill="url(#tn-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Solado -->
+        <path d="M22 145 L180 145 L180 155 L22 155 Z" fill="${a}" stroke="${s}" stroke-width="2.5"/>
+        <!-- Detalhes do solado -->
+        <line x1="22" y1="150" x2="180" y2="150" stroke="${s}" stroke-width="1" opacity="0.5"/>
+        <!-- Cadarço -->
+        <path d="M55 90 Q65 98 78 94 M88 84 Q100 90 112 88" fill="none" stroke="${s}" stroke-width="2"/>
+        <!-- Língua -->
+        <path d="M95 82 L100 62 L118 60 L123 82" fill="${s}" opacity="0.3" stroke="${s}" stroke-width="1.5"/>
+        <!-- Detalhes laterais -->
+        <line x1="58" y1="108" x2="135" y2="108" stroke="${s}" stroke-width="1.5" opacity="0.5"/>
+        <line x1="55" y1="118" x2="140" y2="118" stroke="${s}" stroke-width="1.5" opacity="0.5"/>
+        <!-- Logo círculo -->
+        <circle cx="145" cy="125" r="6" fill="${a}" stroke="${s}" stroke-width="1.5"/>
+        <!-- Frente do tênis -->
+        <path d="M160 130 Q170 125 176 132" fill="none" stroke="${s}" stroke-width="2"/>
+        <!-- Bico -->
+        <path d="M25 125 Q22 130 25 145" fill="none" stroke="${s}" stroke-width="2"/>
+      </svg>`,
+
+    // BOTA / LACOSTE
+    bota: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bt-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <!-- Caneleira -->
+        <path d="M55 55 L95 55 L95 95 Q112 100 132 112 L168 128 Q178 132 176 145 L176 152 L55 152 Z"
+              fill="url(#bt-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Solado -->
+        <path d="M55 152 L176 152 L176 160 L55 160 Z" fill="${a}" stroke="${s}" stroke-width="2.5"/>
+        <!-- Cadarço -->
+        <line x1="65" y1="70" x2="90" y2="70" stroke="${s}" stroke-width="2"/>
+        <line x1="65" y1="82" x2="90" y2="82" stroke="${s}" stroke-width="2"/>
+        <line x1="65" y1="94" x2="90" y2="94" stroke="${s}" stroke-width="2"/>
+        <!-- Logo jacaré (Lacoste) -->
+        <path d="M140 130 Q150 125 158 130 Q162 135 158 140 Q150 143 140 140 Z" fill="${a}" opacity="0.8" stroke="${s}" stroke-width="1"/>
+        <!-- Fivela -->
+        <circle cx="145" cy="138" r="2" fill="${s}"/>
+      </svg>`,
+
+    // TÊNIS SKATE
+    skate: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sk-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M22 120 Q22 92 50 88 L95 80 Q118 76 132 88 L172 110 Q184 118 180 135 L180 148 L22 148 Z"
+              fill="url(#sk-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Solado grosso (chunky) -->
+        <path d="M18 148 L182 148 L182 162 L18 162 Z" fill="${a}" stroke="${s}" stroke-width="2.5"/>
+        <line x1="18" y1="155" x2="182" y2="155" stroke="${s}" stroke-width="1" opacity="0.5"/>
+        <!-- Cadarço -->
+        <path d="M50 88 Q65 96 78 92 M88 84 Q100 90 112 88" fill="none" stroke="${s}" stroke-width="2"/>
+        <!-- Língua -->
+        <path d="M95 80 L100 58 L120 56 L125 80" fill="${s}" opacity="0.3" stroke="${s}" stroke-width="1.5"/>
+        <!-- Detalhes -->
+        <line x1="55" y1="105" x2="138" y2="105" stroke="${s}" stroke-width="1.5" opacity="0.5"/>
+        <line x1="52" y1="115" x2="145" y2="115" stroke="${s}" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="148" cy="122" r="5" fill="${a}" stroke="${s}" stroke-width="1.5"/>
+        <path d="M162 128 Q174 123 178 130" fill="none" stroke="${s}" stroke-width="2"/>
+        <!-- Padrão de sola -->
+        <line x1="22" y1="158" x2="178" y2="158" stroke="${s}" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+      </svg>`,
+
+    // CALÇA JEANS
+    calcajeans: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cj-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L146 52 L142 178 L108 178 L100 85 L92 178 L58 178 L54 52 Z"
+              fill="url(#cj-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="54" y1="42" x2="146" y2="42" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <!-- Botão -->
+        <circle cx="100" cy="34" r="3" fill="${s}"/>
+        <!-- Bolsos -->
+        <path d="M64 55 Q78 48 90 55" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <path d="M110 55 Q122 48 136 55" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <rect x="68" y="58" width="20" height="14" rx="1" fill="none" stroke="${s}" stroke-width="1"/>
+        <rect x="112" y="58" width="20" height="14" rx="1" fill="none" stroke="${s}" stroke-width="1"/>
+        <!-- Costuras laterais -->
+        <line x1="70" y1="150" x2="92" y2="150" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+        <line x1="108" y1="150" x2="130" y2="150" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+        <!-- Barra -->
+        <path d="M58 178 L92 178 M108 178 L142 178" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CALÇA CARGO
+    calcacargo: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L146 52 L142 178 L108 178 L100 85 L92 178 L58 178 L54 52 Z"
+              fill="url(#cc-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="54" y1="42" x2="146" y2="42" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <circle cx="100" cy="34" r="3" fill="${s}"/>
+        <!-- Bolsos cargo grandes -->
+        <rect x="60" y="95" width="30" height="32" rx="3" fill="${a}" opacity="0.7" stroke="${s}" stroke-width="1.5"/>
+        <line x1="60" y1="106" x2="90" y2="106" stroke="${s}" stroke-width="1.2"/>
+        <rect x="110" y="95" width="30" height="32" rx="3" fill="${a}" opacity="0.7" stroke="${s}" stroke-width="1.5"/>
+        <line x1="110" y1="106" x2="140" y2="106" stroke="${s}" stroke-width="1.2"/>
+        <!-- Costuras -->
+        <line x1="70" y1="150" x2="92" y2="150" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+        <line x1="108" y1="150" x2="130" y2="150" stroke="${s}" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+        <path d="M58 178 L92 178 M108 178 L142 178" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CALÇA MOLETOM
+    calcamoletom: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L146 52 L142 172 L108 172 L100 85 L92 172 L58 172 L54 52 Z"
+              fill="url(#cm-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Cós elástico -->
+        <path d="M54 42 Q100 34 146 42" fill="none" stroke="${s}" stroke-width="3"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <!-- Cordão -->
+        <path d="M88 48 Q92 62 88 70" fill="none" stroke="${s}" stroke-width="2"/>
+        <path d="M112 48 Q108 62 112 70" fill="none" stroke="${s}" stroke-width="2"/>
+        <circle cx="88" cy="72" r="2" fill="${s}"/>
+        <circle cx="112" cy="72" r="2" fill="${s}"/>
+        <!-- Punhos -->
+        <rect x="60" y="162" width="30" height="10" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <rect x="110" y="162" width="30" height="10" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <path d="M58 172 L92 172 M108 172 L142 172" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CALÇA ALFAIATARIA
+    calcasocial: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cs-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L146 52 L142 182 L108 182 L100 85 L92 182 L58 182 L54 52 Z"
+              fill="url(#cs-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="54" y1="42" x2="146" y2="42" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <circle cx="100" cy="34" r="3" fill="${s}"/>
+        <!-- Vinco central -->
+        <line x1="100" y1="90" x2="100" y2="178" stroke="${s}" stroke-width="1" opacity="0.4" stroke-dasharray="4,4"/>
+        <!-- Bolso traseiro -->
+        <path d="M68 60 Q78 52 90 60" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <path d="M110 60 Q122 52 132 60" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <!-- Passador -->
+        <line x1="78" y1="42" x2="78" y2="78" stroke="${s}" stroke-width="1.2" opacity="0.5"/>
+        <line x1="122" y1="42" x2="122" y2="78" stroke="${s}" stroke-width="1.2" opacity="0.5"/>
+        <path d="M58 182 L92 182 M108 182 L142 182" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CALÇA WIDE LEG
+    calcawide: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L152 52 L156 182 L112 182 L100 85 L88 182 L44 182 L48 52 Z"
+              fill="url(#cw-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="48" y1="42" x2="152" y2="42" stroke="${s}" stroke-width="2.5"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <circle cx="100" cy="34" r="3" fill="${s}"/>
+        <!-- Bolsos -->
+        <path d="M66 58 Q78 52 90 58" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <path d="M110 58 Q122 52 134 58" fill="none" stroke="${s}" stroke-width="1.5"/>
+        <!-- Costura interna -->
+        <line x1="88" y1="90" x2="68" y2="178" stroke="${s}" stroke-width="1" opacity="0.5"/>
+        <line x1="112" y1="90" x2="132" y2="178" stroke="${s}" stroke-width="1" opacity="0.5"/>
+        <path d="M44 182 L88 182 M112 182 L156 182" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+
+    // CALÇA CORDÃO
+    calcacordao: (f, s, a, sh) => `
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cco-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${f}"/>
+            <stop offset="100%" stop-color="${sh}"/>
+          </linearGradient>
+        </defs>
+        <path d="M58 22 L142 22 L146 52 L142 172 L108 172 L100 85 L92 172 L58 172 L54 52 Z"
+              fill="url(#cco-grad)" stroke="${s}" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M54 42 Q100 34 146 42" fill="none" stroke="${s}" stroke-width="3"/>
+        <line x1="100" y1="42" x2="100" y2="85" stroke="${s}" stroke-width="2"/>
+        <!-- Cordão mais longo -->
+        <path d="M86 48 Q90 68 84 82" fill="none" stroke="${s}" stroke-width="2"/>
+        <path d="M114 48 Q110 68 116 82" fill="none" stroke="${s}" stroke-width="2"/>
+        <circle cx="84" cy="84" r="2.5" fill="${s}"/>
+        <circle cx="116" cy="84" r="2.5" fill="${s}"/>
+        <!-- Punhos -->
+        <rect x="60" y="162" width="30" height="10" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <rect x="110" y="162" width="30" height="10" rx="2" fill="${a}" opacity="0.6" stroke="${s}" stroke-width="1.5"/>
+        <path d="M58 172 L92 172 M108 172 L142 172" stroke="${s}" stroke-width="2.5"/>
+      </svg>`,
+  };
+
+  const categories = [
+    { id: 'blusas', name: 'BLUSAS', icon: '👕' },
+    { id: 'kits', name: 'KITS', icon: '👔' },
+    { id: 'shorts', name: 'SHORTS', icon: '🩳' },
+    { id: 'calcas', name: 'CALÇAS', icon: '👖' },
+    { id: 'sapatos', name: 'SAPATOS', icon: '👟' },
+    { id: 'promocoes', name: 'PROMOÇÕES', icon: '🔥', promo: true },
+  ];
+
+  const products = [
+    { id: 1, category: 'blusas', name: 'BLUSA OVERSIZED', price: 89.90, desenho: 'oversized', tag: 'DESTAQUE', stock: { P: 5, M: 10, G: 8, GG: 3 } },
+    { id: 2, category: 'blusas', name: 'SOCIAL CLÁSSICA', price: 94.90, desenho: 'social', stock: { P: 2, M: 0, G: 6, GG: 4 } },
+    { id: 3, category: 'blusas', name: 'BLUSA GOLA POLO', price: 99.90, desenho: 'polo', stock: { P: 0, M: 3, G: 2, GG: 0 } },
+    { id: 4, category: 'blusas', name: 'STREET', price: 109.90, desenho: 'street', stock: { P: 7, M: 5, G: 9, GG: 6 } },
+    { id: 5, category: 'blusas', name: 'DRI FIT', price: 84.90, desenho: 'drifit', stock: { P: 1, M: 4, G: 0, GG: 2 } },
+    { id: 6, category: 'blusas', name: 'CANELADA', price: 119.90, desenho: 'canelada', stock: { P: 4, M: 8, G: 5, GG: 0 } },
+    { id: 7, category: 'kits', name: 'KIT STREET DUO', price: 159.90, desenho: 'kit', tag: 'COMBO', stock: { P: 3, M: 6, G: 5, GG: 2 } },
+    { id: 8, category: 'kits', name: 'KIT TRIPLE BLACK', price: 199.90, desenho: 'kit', tag: 'TOP', stock: { P: 2, M: 4, G: 3, GG: 1 } },
+    { id: 9, category: 'kits', name: 'KIT SUMMER VIBE', price: 149.90, desenho: 'kit', stock: { P: 5, M: 8, G: 6, GG: 3 } },
+    { id: 10, category: 'kits', name: 'KIT FULL OUTFIT', price: 349.90, desenho: 'kit', tag: 'PREMIUM', stock: { P: 1, M: 2, G: 2, GG: 1 } },
+    { id: 11, category: 'shorts', name: 'SHORT CARGO', price: 79.90, desenho: 'shorts', stock: { P: 6, M: 10, G: 7, GG: 4 } },
+    { id: 12, category: 'shorts', name: 'SHORT JEANS', price: 89.90, desenho: 'jeans', stock: { P: 3, M: 5, G: 4, GG: 2 } },
+    { id: 13, category: 'shorts', name: 'SHORT ESPORTIVO', price: 59.90, desenho: 'shorts', stock: { P: 8, M: 12, G: 10, GG: 6 } },
+    { id: 14, category: 'shorts', name: 'SHORT TACTEL', price: 69.90, desenho: 'shorts', stock: { P: 4, M: 6, G: 5, GG: 3 } },
+    { id: 15, category: 'shorts', name: 'SHORT POLO', price: 99.90, desenho: 'shorts', stock: { P: 2, M: 3, G: 4, GG: 1 } },
+    { id: 21, category: 'calcas', name: 'CALÇA JEANS', price: 149.90, desenho: 'calcajeans', tag: 'CLÁSSICA', stock: { P: 4, M: 8, G: 6, GG: 3 } },
+    { id: 22, category: 'calcas', name: 'CALÇA CARGO', price: 179.90, desenho: 'calcacargo', tag: 'HYPE', stock: { P: 3, M: 6, G: 5, GG: 2 } },
+    { id: 23, category: 'calcas', name: 'CALÇA MOLETOM', price: 129.90, desenho: 'calcamoletom', stock: { P: 7, M: 10, G: 8, GG: 5 } },
+    { id: 24, category: 'calcas', name: 'CALÇA ALFAIATARIA', price: 199.90, desenho: 'calcasocial', tag: 'PREMIUM', stock: { P: 2, M: 4, G: 3, GG: 1 } },
+    { id: 25, category: 'calcas', name: 'CALÇA WIDE LEG', price: 169.90, desenho: 'calcawide', stock: { P: 3, M: 5, G: 4, GG: 2 } },
+    { id: 26, category: 'calcas', name: 'CALÇA CORDÃO', price: 139.90, desenho: 'calcacordao', stock: { P: 5, M: 8, G: 6, GG: 4 } },
+    { id: 16, category: 'sapatos', name: 'ADIDAS', price: 249.90, desenho: 'tenis', tag: 'LANÇAMENTO', stock: { 38: 4, 39: 6, 40: 8, 41: 5, 42: 3 } },
+    { id: 17, category: 'sapatos', name: 'NIKE', price: 329.90, desenho: 'tenis', tag: 'HYPE', stock: { 38: 2, 39: 3, 40: 5, 41: 4, 42: 2 } },
+    { id: 18, category: 'sapatos', name: 'VANS', price: 129.90, desenho: 'tenis', stock: { 38: 6, 39: 8, 40: 10, 41: 7, 42: 4 } },
+    { id: 19, category: 'sapatos', name: 'LACOSTE', price: 399.90, desenho: 'bota', tag: 'PREMIUM', stock: { 38: 1, 39: 2, 40: 3, 41: 2, 42: 1 } },
+    { id: 20, category: 'sapatos', name: 'TÊNIS SKATE', price: 279.90, desenho: 'skate', stock: { 38: 3, 39: 5, 40: 6, 41: 4, 42: 2 } },
+  ];
+
+  const promocoes = [
+    { productId: 1, desconto: 30 }, { productId: 3, desconto: 25 }, { productId: 7, desconto: 35 },
+    { productId: 9, desconto: 20 }, { productId: 12, desconto: 40 }, { productId: 13, desconto: 30 },
+    { productId: 22, desconto: 25 }, { productId: 23, desconto: 35 }, { productId: 16, desconto: 20 },
+    { productId: 18, desconto: 30 },
+  ];
+
+  let cart = [];
+  let selectedSizes = {};
+  let selectedModels = {};
+  let activeCategory = 'blusas';
+  let selectedPayment = 'cartao';
+
+  const quizQuestions = [
+    { question: 'Qual é o seu estilo predominante?', options: [
+      { text: 'Street / Skatista', value: 'street' },
+      { text: 'Esportivo / Casual', value: 'sport' },
+      { text: 'Elegante / Minimalista', value: 'elegant' },
+      { text: 'Hype / Tendência', value: 'hype' },
+    ]},
+    { question: 'Onde você mais usa suas roupas?', options: [
+      { text: 'Rolê com os amigos', value: 'street' },
+      { text: 'Academia / Esporte', value: 'sport' },
+      { text: 'Trabalho / Faculdade', value: 'elegant' },
+      { text: 'Balada / Festas', value: 'hype' },
+    ]},
+    { question: 'Qual cor combina mais com você?', options: [
+      { text: 'Preto total', value: 'black' },
+      { text: 'Branco / Neutros', value: 'white' },
+      { text: 'Cores vibrantes', value: 'colorful' },
+      { text: 'Cinza / Tons escuros', value: 'gray' },
+    ]},
+    { question: 'Quanto você costuma gastar em uma peça?', options: [
+      { text: 'Até R$ 100', value: 'budget' },
+      { text: 'R$ 100 - R$ 200', value: 'mid' },
+      { text: 'R$ 200 - R$ 300', value: 'high' },
+      { text: 'Acima de R$ 300', value: 'premium' },
+    ]},
+    { question: 'Qual peça você mais gosta de usar?', options: [
+      { text: 'Blusas / Camisetas', value: 'blusas' },
+      { text: 'Calças / Shorts', value: 'calcas' },
+      { text: 'Tênis / Sapatos', value: 'sapatos' },
+      { text: 'Kits completos', value: 'kits' },
+    ]},
+  ];
+
+  let quizState = { current: 0, answers: [] };
+
+  function renderTabs() {
+    const tabsContainer = document.getElementById('tabs');
+    tabsContainer.innerHTML = categories.map(cat => {
+      let count;
+      if (cat.id === 'promocoes') count = promocoes.length;
+      else count = products.filter(p => p.category === cat.id).length;
+      return `
+        <button class="tab-btn ${activeCategory === cat.id ? 'active' : ''} ${cat.promo ? 'tab-promo' : ''}" onclick="switchCategory('${cat.id}')">
+          <span class="tab-icon">${cat.icon}</span>${cat.name}
+          <span class="tab-count">${count}</span>
+        </button>`;
+    }).join('');
+  }
+
+  function switchCategory(catId) {
+    activeCategory = catId;
+    renderTabs();
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    let filtered;
+    let isPromo = false;
+    
+    if (activeCategory === 'promocoes') {
+      isPromo = true;
+      filtered = promocoes.map(promo => {
+        const prod = products.find(p => p.id === promo.productId);
+        return { ...prod, desconto: promo.desconto };
+      });
+    } else {
+      filtered = products.filter(p => p.category === activeCategory);
+    }
+    
+    grid.innerHTML = filtered.map(p => {
+      const totalStock = Object.values(p.stock).reduce((a, b) => a + b, 0);
+      const allSoldOut = totalStock === 0;
+      const modeloSelecionado = selectedModels[p.id] || MODELOS[0].id;
+      const modeloAtual = MODELOS.find(m => m.id === modeloSelecionado);
+      const desenhoFn = DESENHOS[p.desenho] || DESENHOS.oversized;
+      const svgDesenho = desenhoFn(modeloAtual.fill, modeloAtual.stroke, modeloAtual.accent, modeloAtual.shadow);
+      
+      const modelButtons = MODELOS.map(m => `
+        <button class="model-btn ${modeloSelecionado === m.id ? 'selected' : ''}" onclick="selectModel(${p.id}, '${m.id}')" title="${m.nome}">
+          <span class="model-color" style="background:${m.cor}"></span>
+          <span class="model-name">${m.nome}</span>
+        </button>
+      `).join('');
+      
+      const sizeButtons = Object.entries(p.stock).map(([size, qty]) => {
+        const isDisabled = qty === 0;
+        const isSelected = selectedSizes[p.id] === size;
+        return `<button class="size-btn ${isSelected ? 'selected' : ''}" ${isDisabled ? 'disabled' : ''} onclick="selectSize(${p.id}, '${size}')">
+          <span class="size-name">${size}</span>
+          <span class="size-stock">${isDisabled ? 'ESGOT.' : qty + ' un'}</span>
+        </button>`;
+      }).join('');
+
+      const sizeLabel = p.category === 'sapatos' ? 'NÚMERO:' : 'TAMANHO:';
+      
+      let priceHTML = `<div class="price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>`;
+      if (isPromo && p.desconto) {
+        const oldPrice = p.price;
+        const newPrice = oldPrice * (1 - p.desconto / 100);
+        priceHTML = `
+          <div class="price-section">
+            <span class="old-price">R$ ${oldPrice.toFixed(2).replace('.', ',')}</span>
+            <span class="price">R$ ${newPrice.toFixed(2).replace('.', ',')}</span>
+            <span class="discount-badge">-${p.desconto}%</span>
+          </div>`;
+      }
+      
+      const tagHTML = isPromo 
+        ? `<span class="card-tag promo-tag">-${p.desconto}% OFF</span>`
+        : (p.tag ? `<span class="card-tag">${p.tag}</span>` : '');
+      
+      const freteGratisHTML = p.price >= FRETE_GRATIS_MINIMO 
+        ? `<div class="free-ship-badge">🚚 FRETE GRÁTIS</div>` : '';
+
+      return `
+        <div class="card ${isPromo ? 'promo-card' : ''}">
+          <div class="card-img" style="background:${modeloAtual.bg}">
+            ${tagHTML}
+            ${svgDesenho}
+          </div>
+          <div class="card-info">
+            <h3>${p.name}</h3>
+            ${priceHTML}
+            ${freteGratisHTML}
+            
+            <div class="stock-label">COR:</div>
+            <div class="model-selector">${modelButtons}</div>
+            
+            <div class="stock-label">${sizeLabel}</div>
+            <div class="sizes">${sizeButtons}</div>
+            
+            <button class="add-btn" ${allSoldOut ? 'disabled' : ''} onclick="addToCart(${p.id}, ${isPromo ? p.desconto : 0})">
+              ${allSoldOut ? 'ESGOTADO' : 'ADICIONAR'}
+            </button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function selectSize(productId, size) {
+    selectedSizes[productId] = size;
+    renderProducts();
+  }
+
+  function selectModel(productId, modelId) {
+    selectedModels[productId] = modelId;
+    renderProducts();
+  }
+
+  function addToCart(id, desconto = 0) {
+    const product = products.find(p => p.id === id);
+    const size = selectedSizes[id];
+    const modelId = selectedModels[id] || MODELOS[0].id;
+    const modelo = MODELOS.find(m => m.id === modelId);
+    
+    if (!size) { showToast('⚠️ Escolha um tamanho primeiro!'); return; }
+    const stockAvailable = product.stock[size];
+    if (stockAvailable <= 0) { showToast('❌ Tamanho esgotado!'); return; }
+    
+    const finalPrice = desconto > 0 ? product.price * (1 - desconto / 100) : product.price;
+    
+    const existing = cart.find(i => i.id === id && i.size === size && i.model === modelId && i.desconto === desconto);
+    const currentQty = existing ? existing.qty : 0;
+    if (currentQty >= stockAvailable) {
+      showToast(`❌ Só temos ${stockAvailable} unidades no tamanho ${size}!`); return;
+    }
+    product.stock[size]--;
+    if (existing) existing.qty++;
+    else cart.push({
+      id: product.id, name: product.name, model: modelId, modelNome: modelo.nome,
+      modelCor: modelo.cor, price: finalPrice, originalPrice: product.price,
+      desconto, size, qty: 1, custom: false
+    });
+    updateCart();
+    renderProducts();
+    const promoMsg = desconto > 0 ? ` 🔥 -${desconto}%` : '';
+    showToast(`✅ ${product.name} (${modelo.nome} / ${size}) adicionado!${promoMsg}`);
+  }
+
+  function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+    const cartFreeShip = document.getElementById('cart-free-ship');
+    const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+    cartCount.textContent = totalItems;
+    
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<div class="empty-cart">Seu carrinho está vazio 😢</div>';
+      cartTotal.textContent = 'R$ 0,00';
+      cartFreeShip.style.display = 'none';
+      return;
+    }
+    cartItems.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <h4>${item.name} ${item.desconto > 0 ? '🔥' : ''}</h4>
+          <small style="color:#aaa; display:flex; align-items:center; gap:0.4rem; margin:0.3rem 0;">
+            <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:${item.modelCor}; border:1px solid #666;"></span>
+            ${item.modelNome} / Tam: <strong style="color:var(--primary)">${item.size}</strong>
+          </small>
+          ${item.desconto > 0 ? `<small style="color:#ffd700">🔥 -${item.desconto}% OFF</small><br>` : ''}
+          <span>R$ ${item.price.toFixed(2).replace('.', ',')} x${item.qty}</span>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${idx})">×</button>
+      </div>`).join('');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    
+    if (total >= FRETE_GRATIS_MINIMO) {
+      cartFreeShip.style.display = 'flex';
+    } else {
+      cartFreeShip.style.display = 'none';
+    }
+  }
+
+  function removeFromCart(idx) {
+    const item = cart[idx];
+    if (!item.custom) {
+      const product = products.find(p => p.id === item.id);
+      if (product) product.stock[item.size] += item.qty;
+    }
+    cart.splice(idx, 1);
+    updateCart();
+    renderProducts();
+  }
+
+  function toggleCart() {
+    document.getElementById('cart').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+
+  function renderQuiz() {
+    const box = document.getElementById('quiz-box');
+    if (quizState.current >= quizQuestions.length) {
+      renderQuizResult();
+      return;
+    }
+    const q = quizQuestions[quizState.current];
+    const progressBars = quizQuestions.map((_, i) => 
+      `<div class="quiz-progress-bar ${i < quizState.current ? 'completed' : ''}"><div class="quiz-progress-fill"></div></div>`
+    ).join('');
+    
+    box.innerHTML = `
+      <div class="quiz-progress">${progressBars}</div>
+      <div class="quiz-question-num">PERGUNTA ${quizState.current + 1} DE ${quizQuestions.length}</div>
+      <h3 class="quiz-question">${q.question}</h3>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option" onclick="answerQuiz('${opt.value}')">
+            <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+            <span>${opt.text}</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function answerQuiz(value) {
+    quizState.answers.push(value);
+    quizState.current++;
+    renderQuiz();
+  }
+
+  function renderQuizResult() {
+    const box = document.getElementById('quiz-box');
+    const recommendations = gerarRecomendacoes(quizState.answers);
+    box.innerHTML = `
+      <div class="quiz-result">
+        <div class="quiz-result-icon">🎯</div>
+        <h3>SEU ESTILO É: ${recommendations.estilo}</h3>
+        <p>${recommendations.descricao}</p>
+        <h4 style="color:var(--primary); margin-bottom:1rem; font-size:1.1rem; letter-spacing:1px;">RECOMENDAMOS PARA VOCÊ:</h4>
+        <div class="quiz-result-recommendations">
+          ${recommendations.produtos.map(prod => {
+            const modelo = MODELOS[0];
+            const desenhoFn = DESENHOS[prod.desenho] || DESENHOS.oversized;
+            const svg = desenhoFn(modelo.fill, modelo.stroke, modelo.accent, modelo.shadow);
+            return `
+              <div class="recommendation-card" onclick="irParaProduto(${prod.id})">
+                <div style="background:${modelo.bg}; border-radius:8px; padding:0.5rem; margin-bottom:0.5rem; display:flex; align-items:center; justify-content:center;">${svg}</div>
+                <h4>${prod.name}</h4>
+                <div class="rec-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+        <button class="quiz-restart-btn" onclick="restartQuiz()">REFAZER QUIZ</button>
+      </div>
+    `;
+  }
+
+  function gerarRecomendacoes(answers) {
+    const styleCount = {};
+    answers.forEach(a => {
+      if (['street', 'sport', 'elegant', 'hype'].includes(a)) {
+        styleCount[a] = (styleCount[a] || 0) + 1;
+      }
+    });
+    let style = 'street';
+    let maxCount = 0;
+    for (const [s, count] of Object.entries(styleCount)) {
+      if (count > maxCount) { maxCount = count; style = s; }
+    }
+    const estilos = {
+      street: { nome: 'STREET WARRIOR', desc: 'Você vive a cultura de rua! Peças com atitude, oversized e muito estilo.' },
+      sport: { nome: 'SPORT VIBE', desc: 'Conforto é prioridade! Peças esportivas e funcionais para o dia a dia.' },
+      elegant: { nome: 'ELEGANT STREET', desc: 'Sofisticação encontra o streetwear. Peças clean e atemporais.' },
+      hype: { nome: 'HYPE KING', desc: 'Você é tendência! Peças exclusivas e cheias de personalidade.' },
+    };
+    const recomendacoesPorEstilo = {
+      street: [4, 1, 22, 20, 11],
+      sport: [5, 13, 23, 16, 6],
+      elegant: [2, 3, 24, 18, 15],
+      hype: [4, 10, 17, 22, 19],
+    };
+    const ids = recomendacoesPorEstilo[style] || recomendacoesPorEstilo.street;
+    const produtos = ids.map(id => products.find(p => p.id === id)).filter(Boolean).slice(0, 4);
+    return { estilo: estilos[style].nome, descricao: estilos[style].desc, produtos };
+  }
+
+  function restartQuiz() {
+    quizState = { current: 0, answers: [] };
+    renderQuiz();
+  }
+
+  function irParaProduto(productId) {
+    const prod = products.find(p => p.id === productId);
+    if (!prod) return;
+    activeCategory = prod.category;
+    renderTabs();
+    renderProducts();
+    irPara('produtos');
+  }
+
+  function openCheckout() {
+    if (cart.length === 0) { showToast('❌ Seu carrinho está vazio!'); return; }
+    document.getElementById('cart').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+    document.getElementById('checkout-form-view').style.display = 'block';
+    document.getElementById('checkout-success-view').style.display = 'none';
+    renderCheckoutSummary();
+    document.getElementById('checkout-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCheckout() {
+    document.getElementById('checkout-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderCheckoutSummary() {
+    const itemsContainer = document.getElementById('checkout-summary-items');
+    itemsContainer.innerHTML = cart.map(item => `
+      <div class="summary-item">
+        <span>${item.name} (${item.modelNome}/${item.size}) x${item.qty} ${item.desconto > 0 ? '🔥' : ''}</span>
+        <span>R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</span>
+      </div>`).join('');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    document.getElementById('checkout-summary-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+  }
+
+  function selectPayment(method) {
+    selectedPayment = method;
+    document.querySelectorAll('.payment-option').forEach(o => {
+      o.classList.toggle('selected', o.dataset.payment === method);
+    });
+    document.getElementById('card-fields').style.display = method === 'cartao' ? 'block' : 'none';
+    document.getElementById('pix-notice').style.display = method === 'pix' ? 'block' : 'none';
+    document.getElementById('boleto-notice').style.display = method === 'boleto' ? 'block' : 'none';
+  }
+
+  function maskCPF(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = v;
+  }
+  function maskTelefone(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{2})(\d)/, '($1) $2');
+    v = v.replace(/(\d{5})(\d)/, '$1-$2');
+    input.value = v;
+  }
+  function maskCEP(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 8);
+    v = v.replace(/(\d{5})(\d)/, '$1-$2');
+    input.value = v;
+  }
+  function maskCartao(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 16);
+    v = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+    input.value = v;
+  }
+  function maskValidade(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 4);
+    v = v.replace(/(\d{2})(\d)/, '$1/$2');
+    input.value = v;
+  }
+  function maskCVV(input) {
+    input.value = input.value.replace(/\D/g, '').slice(0, 4);
+  }
+
+  function validarCampo(id, condicao) {
+    const el = document.getElementById(id);
+    if (condicao) { el.classList.remove('error'); return true; }
+    el.classList.add('error');
+    return false;
+  }
+
+  function confirmarPedido() {
+    let valido = true;
+    let primeiroErro = null;
+    const nome = document.getElementById('inp-nome').value.trim();
+    if (!validarCampo('inp-nome', nome.length >= 3)) { valido = false; primeiroErro = primeiroErro || 'inp-nome'; }
+    const cpf = document.getElementById('inp-cpf').value.replace(/\D/g, '');
+    if (!validarCampo('inp-cpf', cpf.length === 11)) { valido = false; primeiroErro = primeiroErro || 'inp-cpf'; }
+    const tel = document.getElementById('inp-tel').value.replace(/\D/g, '');
+    if (!validarCampo('inp-tel', tel.length >= 10)) { valido = false; primeiroErro = primeiroErro || 'inp-tel'; }
+    const cep = document.getElementById('inp-cep').value.replace(/\D/g, '');
+    if (!validarCampo('inp-cep', cep.length === 8)) { valido = false; primeiroErro = primeiroErro || 'inp-cep'; }
+    if (!validarCampo('inp-rua', document.getElementById('inp-rua').value.trim().length >= 3)) { valido = false; primeiroErro = primeiroErro || 'inp-rua'; }
+    if (!validarCampo('inp-numero', document.getElementById('inp-numero').value.trim().length >= 1)) { valido = false; primeiroErro = primeiroErro || 'inp-numero'; }
+    if (!validarCampo('inp-bairro', document.getElementById('inp-bairro').value.trim().length >= 2)) { valido = false; primeiroErro = primeiroErro || 'inp-bairro'; }
+    if (!validarCampo('inp-cidade', document.getElementById('inp-cidade').value.trim().length >= 2)) { valido = false; primeiroErro = primeiroErro || 'inp-cidade'; }
+    if (!validarCampo('inp-estado', document.getElementById('inp-estado').value !== '')) { valido = false; primeiroErro = primeiroErro || 'inp-estado'; }
+    if (selectedPayment === 'cartao') {
+      const numCartao = document.getElementById('inp-cartao').value.replace(/\D/g, '');
+      if (!validarCampo('inp-cartao', numCartao.length === 16)) { valido = false; primeiroErro = primeiroErro || 'inp-cartao'; }
+      if (!validarCampo('inp-nome-cartao', document.getElementById('inp-nome-cartao').value.trim().length >= 3)) { valido = false; primeiroErro = primeiroErro || 'inp-nome-cartao'; }
+      if (!validarCampo('inp-validade', document.getElementById('inp-validade').value.length === 5)) { valido = false; primeiroErro = primeiroErro || 'inp-validade'; }
+      if (!validarCampo('inp-cvv', document.getElementById('inp-cvv').value.length >= 3)) { valido = false; primeiroErro = primeiroErro || 'inp-cvv'; }
+    }
+    if (!valido) {
+      showToast('⚠️ Preencha todos os campos obrigatórios!');
+      if (primeiroErro) {
+        document.getElementById(primeiroErro).focus();
+        document.getElementById(primeiroErro).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+    const orderNum = '#FST' + Math.floor(Math.random() * 900000 + 100000);
+    document.getElementById('success-name').textContent = nome.split(' ')[0];
+    document.getElementById('success-order').textContent = orderNum;
+    document.getElementById('checkout-form-view').style.display = 'none';
+    document.getElementById('checkout-success-view').style.display = 'block';
+    cart = [];
+    selectedSizes = {};
+    selectedModels = {};
+    updateCart();
+    renderProducts();
+    document.querySelector('.checkout-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast(`🎉 Pedido ${orderNum} confirmado!`);
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  window.addEventListener('scroll', () => {
+    const sections = ['home', 'produtos', 'quiz'];
+    const scrollPos = window.scrollY + 150;
+    let current = 'home';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos) current = id;
+    });
+    document.querySelectorAll('nav a').forEach(a => {
+      a.classList.toggle('active', a.dataset.nav === current);
+    });
+  });
+
+  renderTabs();
+  renderProducts();
+  updateCart();
+  renderQuiz();
+  document.querySelector('nav a[data-nav="home"]').classList.add('active');
+</script>
+</body>
+</html>
